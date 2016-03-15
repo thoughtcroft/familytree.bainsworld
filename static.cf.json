@@ -1,0 +1,263 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Parameters": {
+      "DomainName": {
+          "Description": "Domain name for your website (example.com)",
+          "Type": "String"
+      },
+      "UseCloudFront": {
+          "Description": "Determines if the site will CloudFront as a CDN.",
+          "Type": "String",
+          "Default": "true",
+          "AllowedValues" : ["true","false"]
+      },
+      "UseRoute53": {
+          "Description": "Determines if the site will Route53 for DNS.",
+          "Type": "String",
+          "Default": "true",
+          "AllowedValues" : ["true","false"]
+      },
+      "PriceClass": {
+          "Description": "PriceClass for CloudFront. Defaults to US & Europe regions.",
+          "Type": "String",
+          "Default": "PriceClass_100",
+          "AllowedValues" : ["PriceClass_All","PriceClass_200","PriceClass_100"]
+      }
+    },
+    "Mappings": {
+      "RegionMap": {
+          "us-east-1": {
+              "HostedZoneId": "Z3AQBSTGFYJSTF",
+              "WebsiteEndpoint": "s3-website-us-east-1.amazonaws.com"
+          },
+          "us-west-1": {
+              "HostedZoneId": "Z2F56UZL2M1ACD",
+              "WebsiteEndpoint": "s3-website-us-west-1.amazonaws.com"
+          },
+          "us-west-2": {
+              "HostedZoneId": "Z3BJ6K6RIION7M",
+              "WebsiteEndpoint": "s3-website-us-west-2.amazonaws.com"
+          },
+          "eu-west-1": {
+              "HostedZoneId": "Z1BKCTXD74EZPE",
+              "WebsiteEndpoint": "s3-website-eu-west-1.amazonaws.com"
+          },
+          "ap-southeast-1": {
+              "HostedZoneId": "Z3O0J2DXBE1FTB",
+              "WebsiteEndpoint": "s3-website-ap-southeast-1.amazonaws.com"
+          },
+          "ap-southeast-2": {
+              "HostedZoneId": "Z1WCIGYICN2BYD",
+              "WebsiteEndpoint": "s3-website-ap-southeast-2.amazonaws.com"
+          },
+          "ap-northeast-1": {
+              "HostedZoneId": "Z2M4EHUR26P7ZW",
+              "WebsiteEndpoint": "s3-website-ap-northeast-1.amazonaws.com"
+          },
+          "sa-east-1": {
+              "HostedZoneId": "Z31GFT0UA1I2HV",
+              "WebsiteEndpoint": "s3-website-sa-east-1.amazonaws.com"
+          },
+          "CloudFront": {
+              "HostedZoneId": "Z2FDTNDATAQYW2"
+          }
+      }
+    },
+    "Conditions": {
+      "CreateCloudFrontDistribution": {
+        "Fn::Equals": [{"Ref": "UseCloudFront"}, "true"]
+      },
+      "DoNotCreateCloudFrontDistribution": {
+        "Fn::Not": [{
+          "Fn::Equals": [{"Ref": "UseCloudFront"}, "true"]
+        }]
+      },
+      "CreateRoute53": {
+        "Fn::Equals": [{"Ref": "UseRoute53"}, "true"]
+      },
+      "DoNotCloud": {
+        "Fn::Equals": ["true", "true"]
+      }
+    },
+    "Resources": {
+        "StaticBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+                "BucketName" : {"Ref":"DomainName"},
+                "AccessControl": "PublicRead",
+                "WebsiteConfiguration": {
+                    "IndexDocument":"index.html",
+                    "ErrorDocument":"error.html"
+                }
+            }
+        },
+        "StaticBucketPolicy": {
+          "Type": "AWS::S3::BucketPolicy",
+          "DependsOn": "StaticBucket",
+          "Properties": {
+            "Bucket": {"Ref": "StaticBucket"},
+            "PolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Sid": "PublicReadStaticBucketPolicy",
+                    "Effect": "Allow",
+                    "Principal": "*",
+                    "Action": "s3:GetObject",
+                    "Resource": { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "StaticBucket" } , "/*" ]]}
+                  }
+                ]
+            }
+          }
+        },
+        "WWWAliasBucket": {
+          "Type": "AWS::S3::Bucket",
+          "DependsOn": "StaticBucket",
+          "Condition": "CreateRoute53",
+          "Properties": {
+              "BucketName": {
+                  "Fn::Join": ["", ["www.", {"Ref":"DomainName"}]]
+              },
+              "AccessControl": "BucketOwnerFullControl",
+              "WebsiteConfiguration": {
+                  "RedirectAllRequestsTo": {
+                      "HostName": {"Ref": "StaticBucket"}
+                  }
+              }
+          }
+        },
+        "HostedZone": {
+          "Type" : "AWS::Route53::HostedZone",
+          "Condition": "CreateRoute53",
+          "Properties": {
+            "Name": {
+              "Fn::Join": ["", [{"Ref": "DomainName"}, "."]]
+            }
+          }
+        },
+        "CloudFrontDistribution": {
+          "Type": "AWS::CloudFront::Distribution",
+          "DependsOn": ["StaticBucket"],
+          "Condition" : "CreateCloudFrontDistribution",
+          "Properties": {
+            "DistributionConfig": {
+              "Enabled": true,
+              "DefaultRootObject": "index.html",
+              "PriceClass": { "Ref": "PriceClass" },
+              "Aliases": [
+                { "Ref": "DomainName" },
+                { "Fn::Join": ["", ["www.", {"Ref":"DomainName"}]] }
+              ],
+              "Origins" : [
+                {
+                  "DomainName": {
+                    "Fn::Join": ["", [
+                      {"Ref":"DomainName"},
+                      ".s3-website-",
+                      { "Ref" : "AWS::Region" },
+                      ".amazonaws.com"
+                    ]]
+                  },
+                  "Id": {
+                    "Fn::GetAtt": ["StaticBucket", "DomainName"]
+                  },
+                  "CustomOriginConfig": {
+                    "HTTPPort": "80",
+                    "HTTPSPort": "443",
+                    "OriginProtocolPolicy": "http-only"
+                  }
+                }
+              ],
+              "DefaultCacheBehavior":  {
+                "TargetOriginId": {
+                  "Fn::GetAtt": ["StaticBucket", "DomainName"]
+                },
+                "ViewerProtocolPolicy": "allow-all",
+                "ForwardedValues": {
+                   "QueryString": true
+                 }
+              }
+            }
+          }
+        },
+        "CloudFrontDistributionDomainNameRecordSet": {
+          "Type": "AWS::Route53::RecordSet",
+          "DependsOn": ["HostedZone","CloudFrontDistribution"],
+          "Condition" : "CreateCloudFrontDistribution",
+          "Properties": {
+            "Name": {"Ref": "DomainName"},
+            "HostedZoneId": {"Ref":  "HostedZone"},
+            "Type": "A",
+            "AliasTarget": {
+              "HostedZoneId": {
+                "Fn::FindInMap" : [ "RegionMap", "CloudFront", "HostedZoneId"]
+              },
+              "DNSName": { "Fn::GetAtt":["CloudFrontDistribution", "DomainName"]}
+            }
+          }
+        },
+        "DomainNameRecordSet": {
+          "Type": "AWS::Route53::RecordSet",
+          "DependsOn": ["HostedZone"],
+          "Condition": "CreateRoute53",
+          "Properties": {
+            "Name": {"Ref": "DomainName"},
+            "HostedZoneId": {"Ref":  "HostedZone"},
+            "Type": "A",
+            "AliasTarget": {
+              "HostedZoneId": {
+                "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "HostedZoneId"]
+              },
+              "DNSName": {
+                "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "WebsiteEndpoint"]
+              }
+            }
+          }
+        },
+        "WWWAliasRecordSet": {
+          "Type": "AWS::Route53::RecordSet",
+          "DependsOn": ["HostedZone"],
+          "Condition": "CreateRoute53",
+          "Properties": {
+            "Name": { "Fn::Join": ["", ["www.", {"Ref":"DomainName"}]]},
+            "HostedZoneId": {"Ref":  "HostedZone"},
+            "Type": "CNAME",
+            "TTL" : "900",
+            "ResourceRecords" : [
+              {"Fn::Join": ["", [
+                "www.",
+                {"Ref":"DomainName"},
+                ".",
+                {"Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "WebsiteEndpoint"]}
+              ]]}
+            ]
+          }
+        }
+    },
+    "Outputs": {
+      "WebsiteURL": {
+          "Value": {"Fn::GetAtt": ["StaticBucket", "WebsiteURL"]},
+          "Description": "URL for website hosted on S3"
+      },
+      "WebsiteDomainName": {
+        "Value":
+        {
+          "Fn::Join": ["", [
+            {"Ref":"DomainName"},
+            ".",
+            {"Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "WebsiteEndpoint"]}
+          ]]
+        },
+        "Description": "Domain Name for the website hosted on S3"
+      },
+      "S3DomainName": {
+        "Value": {"Fn::GetAtt": ["StaticBucket", "DomainName"]},
+        "Description": "Domain Name for the S3 Bucket"
+      },
+      "CloudFrontDistributionDomainName": {
+        "Value": {"Fn::GetAtt": ["CloudFrontDistribution", "DomainName"]},
+        "Description": "Domain Name for the CloudFront Distribution",
+        "Condition" : "CreateCloudFrontDistribution"
+      }
+    }
+}
