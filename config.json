@@ -1,5 +1,5 @@
 {
-    "StackName": "familytree.bainsworld",
+    "StackName": "familytree-bainsworld",
     "Parameters": [
         {
           "ParameterKey": "DomainName",

@@ -9,8 +9,8 @@
 5536.htm||Ann //|1828||1910||
 5657.htm||Ann //|||||
 5994.htm||Anna Maria //|||||
-2022.htm||Anne //|||||
 5846.htm||Anne //|||||
+2022.htm||Anne //|||||
 787.htm||Annette //|||||
 5251.htm||Annie //|||||
 5510.htm||Annie //|||||
@@ -75,11 +75,11 @@
 935.htm||Mary J. //|||||
 5889.htm||Mary Matilda //|||||
 3217.htm||Mary //|||||
-2026.htm||Mary //|||||
 5763.htm||Mary //|Abt 1781||||
 6139.htm||Mary //|||||
 6454.htm||Mary //|1847|Steventon, Ham, Eng|||
 6673.htm||Mary //|||||
+2026.htm||Mary //|||||
 5954.htm||Mildred //|||||
 1766.htm||Molly //|||||
 2024.htm||Noreen //|||||
@@ -617,6 +617,7 @@
 5419.htm|BLACKWELL|Henry /BLACKWELL/|16 Sep 1632|Rudwick, Sussex, England|Abt 1679|Ewhurst, Sussex, England|
 5420.htm|BLACKWELL|Humfrey /BLACKWELL/|Abt 1600|Rudwick, Sussex, England|||
 464.htm|BLAIN|Caroline /BLAIN/|||||
+465.htm|BLAIN|William Costello "Billy" /BLAIN/|29 May 1926|Saintfield, Northern Ireland|16 Jul 2005|Belfast, Northern Ireland|
 3248.htm|BLAKE|David John /BLAKE/|||||
 3247.htm|BLAKE|Kieven /BLAKE/|||||
 3249.htm|BLAKE|Robert Anthony /BLAKE/|||||
@@ -2825,9 +2826,9 @@
 3179.htm|HAWKEN|Charles Roger Gill /HAWKEN/|8 Jul 1884||29 Jan 1965|Tweed Heads, Nsw|
 2788.htm|HAWKEN|Florence Maud /HAWKEN/|18 Jan 1877|Shoalhaven, Nsw|27 May 1970|Lismore, Nsw|
 3182.htm|HAWKEN|Frederick Eric /HAWKEN/|||||
+3180.htm|HAWKEN|John /HAWKEN/|||||
 2789.htm|HAWKEN|John /HAWKEN/|After 1851|Australia|||
 2791.htm|HAWKEN|John /HAWKEN/|||||
-3180.htm|HAWKEN|John /HAWKEN/|||||
 5774.htm|HAWKES|Sarah /HAWKES/|Abt 1767||Abt 1845|Hatfield Broad Oak, Essex, England|
 84.htm|HAWKEY|Joan Margaret /HAWKEY/|||||
 928.htm|HAWKINS|Anna Maria /HAWKINS/|||||
@@ -3287,8 +3288,8 @@
 4613.htm|JAMIESON|Merle /JAMIESON/|||||
 6318.htm|JAPUNZA|/JAPUNZA/|||||
 6319.htm|JAPUNZA|Joshua /JAPUNZA/|||||
-2790.htm|JARRETT|Sarah Emily /JARRETT/|||||
 3181.htm|JARRETT|Sarah Emily /JARRETT/|Abt 1853||23 Jan 1887||
+2790.htm|JARRETT|Sarah Emily /JARRETT/|||||
 5243.htm|JAY|Robert Flower /JAY/|||||
 5887.htm|JEFFERY|Annie /JEFFERY/|Abt 1879||||
 5888.htm|JEFFERY|Edward James /JEFFERY/|||||
@@ -3483,8 +3484,8 @@
 1435.htm|KAEHLER|Ashleigh Annette /KAEHLER/|||||
 1391.htm|KAEHLER|Benjamin /KAEHLER/|||||
 1414.htm|KAEHLER|Brooke Amanda /KAEHLER/|||||
-1397.htm|KAEHLER|Charles Francis /KAEHLER/|||||
 1285.htm|KAEHLER|Charles Francis /KAEHLER/|||||
+1397.htm|KAEHLER|Charles Francis /KAEHLER/|||||
 1417.htm|KAEHLER|Damian Michael /KAEHLER/|||||
 1403.htm|KAEHLER|David Joseph /KAEHLER/|||||
 1399.htm|KAEHLER|Dawn Maree /KAEHLER/|||||
@@ -3970,6 +3971,7 @@
 4626.htm|MAWDSLEY|Amanda Faith /MAWDSLEY/|||||
 4627.htm|MAWDSLEY|Norman Edward /MAWDSLEY/|||||
 4625.htm|MAWDSLEY|Richard Edward /MAWDSLEY/|||||
+309.htm|MAY|Cedric Edwin /MAY/|||||
 285.htm|MAY|Deborah Jane /MAY/|||||
 2749.htm|MAY|Elsie /MAY/|||||
 3656.htm|MAY|Mary Philomena "Mena" /MAY/|||||
@@ -4343,15 +4345,15 @@
 6657.htm|MORLEY|Edward /MORLEY/|Abt 1808||||
 5973.htm|MORLEY|Eliza Ann /MORLEY/|Abt 1875||||
 6628.htm|MORLEY|Ellen Mary "Garrie" /MORLEY/|||||
-5412.htm|MORLEY|Fanny /MORLEY/|1832|Suffolk, England|||
 5980.htm|MORLEY|Fanny /MORLEY/|Abt 1878||||
+5412.htm|MORLEY|Fanny /MORLEY/|1832|Suffolk, England|||
 6656.htm|MORLEY|Frances /MORLEY/|Abt 1814||||
 5415.htm|MORLEY|Hannah /MORLEY/|1839|Suffolk, England|||
 5411.htm|MORLEY|Henry /MORLEY/|1830|Suffolk, England|||
 6659.htm|MORLEY|Henry /MORLEY/|Abt 1806||||
 5410.htm|MORLEY|Isaac /MORLEY/|1828|Suffolk, England|||
-5409.htm|MORLEY|James /MORLEY/|1826|Suffolk, England|||
 5978.htm|MORLEY|James /MORLEY/|Abt 1886||||
+5409.htm|MORLEY|James /MORLEY/|1826|Suffolk, England|||
 6603.htm|MORLEY|James /MORLEY/|Abt 1767|Mildenhall, Suffolk, England|Abt 1845|Mildenhall, Suffolk, England|
 6658.htm|MORLEY|James /MORLEY/|Abt 1806||||
 6663.htm|MORLEY|James /MORLEY/|Abt 1793||||
@@ -4360,8 +4362,8 @@
 5931.htm|MORLEY|Mary /MORLEY/|Abt 1873||||
 6660.htm|MORLEY|Robert /MORLEY/|Abt 1806||||
 6662.htm|MORLEY|Sarah Ann /MORLEY/|Abt 1799||||
-5413.htm|MORLEY|Susan /MORLEY/|1834|Suffolk, England|||
 5976.htm|MORLEY|Susan /MORLEY/|Abt 1882||||
+5413.htm|MORLEY|Susan /MORLEY/|1834|Suffolk, England|||
 6624.htm|MORLEY|William /MORLEY/|Abt 1811|Mildenhall, Suffolk, England|18 May 1894|Mildenhall, Suffolk, England|
 6626.htm|MORLEY|William /MORLEY/|||||
 5977.htm|MORLEY|Winifred R. /MORLEY/|Abt 1884||||
@@ -4619,6 +4621,7 @@
 4251.htm|PAGE-DHU|Wendy Vaudine /PAGE-DHU/|||||
 6189.htm|PAGET|Sandy /PAGET/|||||
 5801.htm|PALMER|Emily Isabel /PALMER/|Abt 1869|Waratah, Nsw|25 Feb 1949|Canterbury, Sydney, Nsw|
+466.htm|PALMER|Mary /PALMER/|1 Oct 1925|Belfast, Northern Ireland|13 Nov 1979|Belfast, Northern Ireland|
 1523.htm|PANAGIOTOPOULOS|Abraham /PANAGIOTOPOULOS/|||||
 1373.htm|PARKER|Cheryl Anne /PARKER/|||||
 3268.htm|PARKER|Crystle Jeanette /PARKER/|||||
@@ -4997,8 +5000,8 @@
 1035.htm|QUINN|Cheryl May /QUINN/|||||
 6680.htm|QUINN|Christine Anne /QUINN/|||||
 5945.htm|QUINN|Doug /QUINN/|||||
-5384.htm|QUINN|Edward /QUINN/|Abt 1869|Redfern, Sydney, Nsw|||
 5942.htm|QUINN|Edward /QUINN/|||||
+5384.htm|QUINN|Edward /QUINN/|Abt 1869|Redfern, Sydney, Nsw|||
 5802.htm|QUINN|Eric /QUINN/|||||
 5817.htm|QUINN|Ethan Patrick /QUINN/|||||
 6592.htm|QUINN|Ethel M. /QUINN/|Abt 1896|Sydney, , New South Wales, Australia|||
@@ -5626,6 +5629,7 @@
 6536.htm|STALEY|Leslie /STALEY/|||||
 6539.htm|STALEY|Peter /STALEY/|||||
 6540.htm|STALEY|Russell /STALEY/|||||
+310.htm|STALLWORTHY|Jane Griffith /STALLWORTHY/|||||
 2379.htm|STAMENKOVIC|Sandra /STAMENKOVIC/|||||
 2167.htm|STANLEY|Sandra /STANLEY/|||||
 3320.htm|STANTON|Ruth Margaret /STANTON/|||||
